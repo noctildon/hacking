@@ -1,0 +1,64 @@
+[global_config]
+  dbus = True
+  enabled_plugins = ,
+  geometry_hinting = False
+  suppress_multiple_term_dialog = True
+  title_font = Monospace 8
+  title_hide_sizetext = True
+  title_inactive_fg_color = "#404040"
+  title_use_system_font = False
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      size = 950, 600
+      type = Window
+  [[4 x 4]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 446:100
+      size = 885, 550
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 444
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 275
+      type = VPaned
+    [[[child3]]]
+      order = 1
+      parent = child1
+      position = 219
+      type = VPaned
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+    [[[terminal4]]]
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#555753"
+    background_image = None
+    cursor_shape = ibeam
+    custom_command = TERM=xterm-256color zsh -l
+    font = Monospace 13
+    foreground_color = "#ffffff"
+    scrollback_infinite = True
+    use_custom_command = True
+    use_system_font = False

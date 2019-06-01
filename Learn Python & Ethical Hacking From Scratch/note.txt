@@ -1,0 +1,10 @@
+Progress : 
+
+Virtual box -> Network -> Attached to: NAT Network, Name: [網路名稱]
+  如果name沒東西可以選,可以去https://www.youtube.com/watch?v=y0PMFg-oAEs
+ 
+修改mac address
+ifconfig [network name] hw ether [new mac address]
+  ifconfig eth0 down
+  ifconfig eth0 hw ether 00:11:22:33:44:55
+  ifconfig eth0 up
