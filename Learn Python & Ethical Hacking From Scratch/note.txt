@@ -1,4 +1,4 @@
-Progress : 
+Progress : 7-1
 
 Virtual box -> Network -> Attached to: NAT Network, Name: [網路名稱]
   如果name沒東西可以選,可以去https://www.youtube.com/watch?v=y0PMFg-oAEs
@@ -8,3 +8,45 @@ ifconfig [network name] hw ether [new mac address]
   ifconfig eth0 down
   ifconfig eth0 hw ether 00:11:22:33:44:55
   ifconfig eth0 up
+
+
+啟用virtualbox的usb,讓guest可以連到host的usb
+https://www.wikihow.tech/Connect-a-USB-to-Virtualbox
+
+arp spoof攻擊
+arpspoof -i eth0 -t <win ip> <gateway ip>
+
+
+尋找ip地址及其mac address
+利用python module: scapy
+
+import scapy.all as scapy
+scapy.scan(<ip address>)
+
+
+找linux的router ip和mac address @kali
+arp -a # find gateway
+route -n # find gateway
+
+找router的ip @kali
+ip route | grep default
+
+找linux的ip @kail
+ifconfig -a # find eth0 inet
+
+找linux的mac address @kali
+ifconfig -a # find eth0 ether
+
+找win的ip 和rotuer的mac address @win
+arp -a # find Interface and probably the first one
+
+找win的router ip @win
+ipconfig # find Default Gateway
+
+找win的ip和mac address @win
+ipconfig/all # find IPv1 Address and Physical Address
+
+
+讓封包可以轉遞 @kali
+echo 1 > /proc/sys/net/ipv4/ip_forward 
+

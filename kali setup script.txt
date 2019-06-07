@@ -19,6 +19,8 @@ gdebi google-chrome-stable_current_amd64.deb
 # AFTER install, add [exec -a "$0" "$HERE/chrome" "$@" --user-data-dir --no-sandbox] to $(which google-chrome)
 
 
+# never sleep
+
 
 # set alias
 echo "alias sd='shutdown -h now'\nalias p3='python3'\nalias p2='python'\nalias la='ls -A'\nalias ll='ls -alF'" >> ~/.bashrc
@@ -30,3 +32,6 @@ echo "vm.swappiness=0" >> /etc/sysctl.conf
 # change boot timeout
 cp /etc/default/grub /etc/default/grub-backup
 sed -i 's/GRUB_TIMEOUT=10/GRUB_TIMEOUT=1/' /etc/default/grub
+update-grub
+
+# install sublime text, followed by https://www.sublimetext.com/docs/3/linux_repositories.html
