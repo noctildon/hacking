@@ -50,3 +50,12 @@ ipconfig/all # find IPv1 Address and Physical Address
 讓封包可以轉遞 @kali
 echo 1 > /proc/sys/net/ipv4/ip_forward 
 
+建立封包的queue,0是queue number (針對其他電腦的attack)
+iptables -I FORWARD -j NFQUEUE --queue-num 0
+
+執行attack以後,執行下行以回復至原狀態
+iptables --flush
+
+將request和response都留在queue裡 (在local上測試)
+iptables -I OUTPUT -j NFQUEUE --queue-num 0
+iptables -I INPUT -j NFQUEUE --queue-num 0
