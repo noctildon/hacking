@@ -1,4 +1,4 @@
-Progress : 7-1
+Progress : 9-1
 
 Virtual box -> Network -> Attached to: NAT Network, Name: [網路名稱]
   如果name沒東西可以選,可以去https://www.youtube.com/watch?v=y0PMFg-oAEs
@@ -47,8 +47,13 @@ ipconfig # find Default Gateway
 ipconfig/all # find IPv1 Address and Physical Address
 
 
-讓封包可以轉遞 @kali
+讓封包可以轉遞 @kali (單次有效)
 echo 1 > /proc/sys/net/ipv4/ip_forward 
+
+永久有效的方法
+gedit /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+
 
 建立封包的queue,0是queue number (針對其他電腦的attack)
 iptables -I FORWARD -j NFQUEUE --queue-num 0
