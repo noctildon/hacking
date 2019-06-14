@@ -1,0 +1,6 @@
+progress: 5-1
+
+wifi adapter recommendation: alfa awus036nha, alfa awus036ach(支援5G)
+
+
+this lecture needs wifi adapter

