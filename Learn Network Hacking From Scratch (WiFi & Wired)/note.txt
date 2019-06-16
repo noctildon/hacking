@@ -1,4 +1,4 @@
-progress: 12-1
+progress: **
 skip ch5~8 (因為需要wifi adapter)
 
 測試用網站: testhtml5.vulnweb.com

