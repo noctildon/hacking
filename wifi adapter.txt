@@ -1,0 +1,3 @@
+wifi adapter recommendation:
+  - alfa awus036nha
+  - alfa awus036ach (support 5G)
